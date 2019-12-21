@@ -1,6 +1,8 @@
 package jpabook.jpa.shop;
 
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import jpabook.jpa.shop.domain.Order;
+import jpabook.jpa.shop.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,7 +25,9 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Order order = em.find(Order.class, 1L);
+            // 주문을 할 경우
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
 
 
             tx.commit();

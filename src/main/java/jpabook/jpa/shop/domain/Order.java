@@ -2,6 +2,8 @@ package jpabook.jpa.shop.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,13 +21,23 @@ public class Order {
 
 //    @Column(name = "MEMBER_ID")
 //    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    // 연관관계 편의 메소드
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
     public Long getId() {
         return id;
@@ -41,6 +53,14 @@ public class Order {
 
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public LocalDateTime getOrderDate() {
