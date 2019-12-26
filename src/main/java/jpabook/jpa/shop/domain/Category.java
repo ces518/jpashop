@@ -11,7 +11,7 @@ import java.util.List;
  * Time: 11:28 오후
  **/
 @Entity
-public class Category {
+public class Category extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;

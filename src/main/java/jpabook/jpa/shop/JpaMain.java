@@ -1,6 +1,7 @@
 package jpabook.jpa.shop;
 
 import com.sun.tools.corba.se.idl.constExpr.Or;
+import jpabook.jpa.shop.domain.Book;
 import jpabook.jpa.shop.domain.Order;
 import jpabook.jpa.shop.domain.OrderItem;
 
@@ -26,9 +27,10 @@ public class JpaMain {
 
         try {
             // 주문을 할 경우
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
-
+            Book book = new Book();
+            book.setAuthor("박준영");
+            book.setIsbn("ASDF");
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {

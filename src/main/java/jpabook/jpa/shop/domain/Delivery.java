@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
  * Time: 11:27 오후
  **/
 @Entity
-public class Delivery {
+public class Delivery extends BaseEntity{
 
     @Id @GeneratedValue
     private Long id;
